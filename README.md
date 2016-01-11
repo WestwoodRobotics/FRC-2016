@@ -1,2 +1,2 @@
 # FRC-2016
-Robot code for the FRC 2016 season "Stronghold"
+Robot code for the FRC 2016 season "Stronghold" written using LabVIEW.
