@@ -27,5 +27,24 @@ public class RMap {
 		
 		// The motors for the shooting mechanism (wheels)
 		shooter1 = 4,
-		shooter2 = 5;
+		shooter2 = 5,
+		
+		// The motors for the adjustment of the shooter
+		shooterAdj1 = 6,
+		shooterAdj2 = 7,
+	
+		// The motors for the intake
+		intake1 = 8,
+		intake2 = 9,
+		intaker = 10;
+	
+	public static enum AdjustMode{
+		Up,
+		Down;
+	}
+	
+	public static enum IntakeMode{
+		In,
+		Out;
+	}
 }

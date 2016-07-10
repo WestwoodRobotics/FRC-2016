@@ -1,5 +1,9 @@
 package org.usfirst.frc.team2583.robot;
 
+import org.usfirst.frc.team2583.robot.commands.LoadNShoot;
+import org.usfirst.frc.team2583.robot.commands.MoveIntake;
+import org.usfirst.frc.team2583.robot.commands.TakeIn;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -9,46 +13,23 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
     
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
+	private static Joystick XController1 = new Joystick(1);
 	
-	public static Joystick joy = new Joystick(1);
-	public static final Button 
-		BUTTON_A = new JoystickButton(joy, 1),
-		BUTTON_B = new JoystickButton(joy, 2),
-		BUTTON_X = new JoystickButton(joy, 3),
-		BUTTON_Y = new JoystickButton(joy, 4),
-		BUTTON_L_BUMPER = new JoystickButton(joy, 5),
-		BUTTON_R_BUMPER = new JoystickButton(joy, 6),
-		BUTTON_BACK = new JoystickButton(joy, 7),
-		BUTTON_START = new JoystickButton(joy, 8),
-		BUTTON_L_JOY = new JoystickButton(joy, 9),
-		BUTTON_R_JOY = new JoystickButton(joy, 10);
-	public static final int
+	@SuppressWarnings("unused")
+	private static final Button 
+		BUTTON_A = new JoystickButton(XController1, 1),
+		BUTTON_B = new JoystickButton(XController1, 2),
+		BUTTON_X = new JoystickButton(XController1, 3),
+		BUTTON_Y = new JoystickButton(XController1, 4),
+		BUTTON_L_BUMPER = new JoystickButton(XController1, 5),
+		BUTTON_R_BUMPER = new JoystickButton(XController1, 6),
+		BUTTON_BACK = new JoystickButton(XController1, 7),
+		BUTTON_START = new JoystickButton(XController1, 8),
+		BUTTON_L_JOY = new JoystickButton(XController1, 9),
+		BUTTON_R_JOY = new JoystickButton(XController1, 10);
+	@SuppressWarnings("unused")
+	private static final int
 		LEFT_X = 1,
 		LEFT_Y = 2,
 		TRIGGERS = 3,
@@ -57,23 +38,31 @@ public class OI {
 		D_PAD = 6;
 	
 	public OI(){
-		
+		BUTTON_B.whileHeld(new TakeIn(RMap.IntakeMode.Out));
+		BUTTON_A.whileHeld(new TakeIn(RMap.IntakeMode.In));
+		BUTTON_Y.whileHeld(new MoveIntake(RMap.AdjustMode.Up));
+		BUTTON_X.whileHeld(new MoveIntake(RMap.AdjustMode.Down));
+		BUTTON_START.whenPressed(new LoadNShoot());
 	}
 	
 	public double getRightY(){
-		return joy.getRawAxis(RIGHT_Y);
+		return XController1.getRawAxis(RIGHT_Y);
 	}
 	
 	public double getLeftY(){
-		return joy.getRawAxis(LEFT_Y);
+		return XController1.getRawAxis(LEFT_Y);
 	}
 	
 	public double getRightX(){
-		return joy.getRawAxis(RIGHT_X);
+		return XController1.getRawAxis(RIGHT_X);
 	}
 	
 	public double getLeftX(){
-		return joy.getRawAxis(LEFT_X);
+		return XController1.getRawAxis(LEFT_X);
+	}
+	
+	public double getTriggers(){
+		return XController1.getRawAxis(TRIGGERS);
 	}
 }
 

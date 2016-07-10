@@ -5,6 +5,7 @@ import org.usfirst.frc.team2583.robot.commands.ExampleCommand;
 import org.usfirst.frc.team2583.robot.commands.JoystickDrive;
 import org.usfirst.frc.team2583.robot.subsystems.DriveBase;
 import org.usfirst.frc.team2583.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team2583.robot.subsystems.Intake;
 import org.usfirst.frc.team2583.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveBase base;
 	public static Shooter shooter;
+	public static Intake intake;
 	
     Command autonomousCommand;
     SendableChooser chooser;
