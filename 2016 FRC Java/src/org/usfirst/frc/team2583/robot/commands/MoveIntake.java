@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2583.robot.commands;
 
 import org.usfirst.frc.team2583.robot.RMap;
-import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveIntake extends Command {
 	
+	private final Intake intake;
 	final RMap.AdjustMode mode;
 	
     public MoveIntake(RMap.AdjustMode mode) {
-    	requires(Robot.intake);
+    	intake = Intake.getInstance();
+    	requires(intake);
         this.mode = mode;
     }
 
@@ -25,10 +27,10 @@ public class MoveIntake extends Command {
     protected void execute() {
     	switch(mode){
     	case Up:
-    		Robot.intake.moveUp();
+    		intake.moveUp();
     		break;
     	case Down:
-    		Robot.intake.moveDown();
+    		intake.moveDown();
     		break;
     	}
     }
@@ -40,7 +42,7 @@ public class MoveIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stopAdjustment();
+    	intake.stopAdjustment();
     }
 
     // Called when another command which requires one or more of the same

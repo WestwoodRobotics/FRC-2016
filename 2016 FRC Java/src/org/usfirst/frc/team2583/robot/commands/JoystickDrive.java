@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.OI;
+import org.usfirst.frc.team2583.robot.subsystems.DriveBase;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,9 +10,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoystickDrive extends Command {
 
+	private final OI oi;
+	private final DriveBase base;
+	
     public JoystickDrive() {
-        requires(Robot.base);
+    	base = DriveBase.getInstance();
+        requires(base);
         setInterruptible(true);
+        oi = OI.getInstance();
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +26,7 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.base.tankDrive(Robot.oi.getLeftY(), Robot.oi.getRightY());
+    	base.tankDrive(oi.XController1.getLeftY(), oi.XController1.getRightY());
     }
 
     // Make this return true when this Command no longer needs to run execute()

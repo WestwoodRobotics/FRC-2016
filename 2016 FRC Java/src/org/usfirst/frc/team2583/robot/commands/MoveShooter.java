@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.OI;
+import org.usfirst.frc.team2583.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,9 +10,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveShooter extends Command {
 	
+	private final OI oi;
+	private final Shooter shooter;
+	
     public MoveShooter() {
-        requires(Robot.shooter);
+    	shooter = Shooter.getInstance();
+        requires(shooter);
         setInterruptible(true);
+        oi = OI.getInstance();
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +26,7 @@ public class MoveShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setAdjSpeed(Robot.oi.getTriggers());
+    	shooter.setAdjSpeed(oi.XController1.getRightTrigger() - oi.XController1.getLeftTrigger());
     }
 
     // Make this return true when this Command no longer needs to run execute()

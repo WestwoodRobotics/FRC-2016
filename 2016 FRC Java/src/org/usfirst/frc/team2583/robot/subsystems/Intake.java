@@ -10,6 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
+	private static Intake instance;
+	public static Intake getInstance(){
+		if(instance == null){
+			instance = new Intake();
+		}
+		return instance;
+	}
+	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

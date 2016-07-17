@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2583.robot.commands;
 
-import org.usfirst.frc.team2583.robot.Robot;
+import org.usfirst.frc.team2583.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Shoot extends Command {
 
+	private final Shooter shooter;
+	
     public Shoot() {
+    	shooter = Shooter.getInstance();
         setTimeout(4);
     }
 
@@ -19,7 +22,7 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.spinWheels();
+    	shooter.spinWheels();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,7 +32,7 @@ public class Shoot extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.stopWheels();
+    	shooter.stopWheels();
     }
 
     // Called when another command which requires one or more of the same
